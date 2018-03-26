@@ -11,6 +11,7 @@ Method | HTTP request | Description
 [**get_cash_flows**](CategoriesApi.md#get_cash_flows) | **GET** /api/v1/categories/cashFlows | Get cash flows
 [**get_category**](CategoriesApi.md#get_category) | **GET** /api/v1/categories/{id} | Get a category
 [**get_multiple_categories**](CategoriesApi.md#get_multiple_categories) | **GET** /api/v1/categories/{ids} | Get multiple categories
+[**train_categorization**](CategoriesApi.md#train_categorization) | **POST** /api/v1/categories/trainCategorization | Train categorization
 
 
 # **create_category**
@@ -402,6 +403,57 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**CategoryList**](CategoryList.md)
+
+### Authorization
+
+[finapi_auth](../README.md#finapi_auth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: Not defined
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **train_categorization**
+> train_categorization(body=body)
+
+Train categorization
+
+This service allows you to create user-specific categorization rules (for the user that is authorized by the access_token). Pass a categorization sample (=set of transaction data and a target category), and finAPI will train the user's categorization rules so that similar transactions will be categorized accordingly in future. Basically, this service behaves the same as when assigning categories to existing transactions via the 'Edit a transaction' service, with the difference that you can directly pass transaction data to this service, without the need of having any transactions actually imported in finAPI. Must pass the user's access_token.
+
+### Example
+```python
+from __future__ import print_function
+import time
+import swagger_client
+from swagger_client.rest import ApiException
+from pprint import pprint
+
+# Configure OAuth2 access token for authorization: finapi_auth
+configuration = swagger_client.Configuration()
+configuration.access_token = 'YOUR_ACCESS_TOKEN'
+
+# create an instance of the API class
+api_instance = swagger_client.CategoriesApi(swagger_client.ApiClient(configuration))
+body = swagger_client.CategorizationSample() # CategorizationSample | Categorization sample (optional)
+
+try:
+    # Train categorization
+    api_instance.train_categorization(body=body)
+except ApiException as e:
+    print("Exception when calling CategoriesApi->train_categorization: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **body** | [**CategorizationSample**](CategorizationSample.md)| Categorization sample | [optional] 
+
+### Return type
+
+void (empty response body)
 
 ### Authorization
 

@@ -4,9 +4,61 @@ All URIs are relative to *https://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**change_client_credentials**](MandatorAdministrationApi.md#change_client_credentials) | **POST** /api/v1/mandatorAdmin/changeClientCredentials | Change client credentials
 [**delete_users**](MandatorAdministrationApi.md#delete_users) | **POST** /api/v1/mandatorAdmin/deleteUsers | Delete users
 [**get_user_list**](MandatorAdministrationApi.md#get_user_list) | **GET** /api/v1/mandatorAdmin/getUserList | Get user list
 
+
+# **change_client_credentials**
+> change_client_credentials(body)
+
+Change client credentials
+
+Change the client_secret for any of your clients, including the mandator admin client. Must pass the <a href='https://finapi.zendesk.com/hc/en-us/articles/115003661827-Difference-between-app-clients-and-mandator-admin-client'>mandator admin client</a>'s access_token. <br/><br/>NOTES:<br/>&bull; When you change a client's secret, then all of its existing access tokens will be revoked. User access tokens are not affected.<br/>&bull; finAPI is storing client secrets with a one-way encryption. A lost client secret can NOT be recovered.
+
+### Example
+```python
+from __future__ import print_function
+import time
+import swagger_client
+from swagger_client.rest import ApiException
+from pprint import pprint
+
+# Configure OAuth2 access token for authorization: finapi_auth
+configuration = swagger_client.Configuration()
+configuration.access_token = 'YOUR_ACCESS_TOKEN'
+
+# create an instance of the API class
+api_instance = swagger_client.MandatorAdministrationApi(swagger_client.ApiClient(configuration))
+body = swagger_client.ChangeClientCredentialsParams() # ChangeClientCredentialsParams | Parameters for changing client credentials
+
+try:
+    # Change client credentials
+    api_instance.change_client_credentials(body)
+except ApiException as e:
+    print("Exception when calling MandatorAdministrationApi->change_client_credentials: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **body** | [**ChangeClientCredentialsParams**](ChangeClientCredentialsParams.md)| Parameters for changing client credentials | 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[finapi_auth](../README.md#finapi_auth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: Not defined
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **delete_users**
 > UserIdentifiersList delete_users(body)

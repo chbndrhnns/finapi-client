@@ -4,8 +4,61 @@ All URIs are relative to *https://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**check_categorization**](MocksAndTestsApi.md#check_categorization) | **POST** /api/v1/tests/checkCategorization | Check categorization
 [**mock_batch_update**](MocksAndTestsApi.md#mock_batch_update) | **POST** /api/v1/tests/mockBatchUpdate | Mock batch update
 
+
+# **check_categorization**
+> CategorizationCheckResults check_categorization(body)
+
+Check categorization
+
+This service can be used to check the categorization for a given set of transactions, without the need of having the transactions actually imported in finAPI. The result of the categorization is the same as if the transactions were actually imported (the service regards the user-specific categorization rules of the user that is authorized by the access_token). Must pass the user's access_token.
+
+### Example
+```python
+from __future__ import print_function
+import time
+import swagger_client
+from swagger_client.rest import ApiException
+from pprint import pprint
+
+# Configure OAuth2 access token for authorization: finapi_auth
+configuration = swagger_client.Configuration()
+configuration.access_token = 'YOUR_ACCESS_TOKEN'
+
+# create an instance of the API class
+api_instance = swagger_client.MocksAndTestsApi(swagger_client.ApiClient(configuration))
+body = swagger_client.TransactionsData() # TransactionsData | Transactions data
+
+try:
+    # Check categorization
+    api_response = api_instance.check_categorization(body)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling MocksAndTestsApi->check_categorization: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **body** | [**TransactionsData**](TransactionsData.md)| Transactions data | 
+
+### Return type
+
+[**CategorizationCheckResults**](CategorizationCheckResults.md)
+
+### Authorization
+
+[finapi_auth](../README.md#finapi_auth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: Not defined
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **mock_batch_update**
 > mock_batch_update(body)
